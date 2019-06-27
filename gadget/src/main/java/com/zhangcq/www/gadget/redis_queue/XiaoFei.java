@@ -2,6 +2,8 @@ package com.zhangcq.www.gadget.redis_queue;
 
 import redis.clients.jedis.Jedis;
 
+import java.util.List;
+
 /**
  * @Description:
  * @author: zhangcq
@@ -12,13 +14,12 @@ public class XiaoFei extends Thread{
 
     @Override
     public void run() {
-        Jedis jedis = OneJedis.getJedis();
+        Jedis jedis = JedisPools.getJedis();
         while (true){
             try {
                 Thread.sleep((long) (Math.random()*1000));
-                StringBuffer sb = new StringBuffer();
-                String lpop = jedis.blpop(2,"list").toString();
-                System.out.println(lpop);
+                List<String> list = jedis.brpop(0, "list");
+                System.out.println(Thread.currentThread().getName()+"消费的"+list);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

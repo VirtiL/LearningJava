@@ -1,7 +1,7 @@
 package com.zhangcq.www.gadget.redis_queue;
 
 /**
- * @Description:
+ * @Description: 基于redis的消费队列
  * @author: zhangcq
  * @Time: 2019-6-26 17:46
  * @Version 1.0
@@ -9,10 +9,6 @@ package com.zhangcq.www.gadget.redis_queue;
 public class Demo {
 
     public static void main(String[] args) {
-        ShengChan shengChan = new ShengChan();
-        shengChan.start();
-        ShengChan shengChan2 = new ShengChan();
-        shengChan2.start();
         XiaoFei xiaoFei = new XiaoFei();
         xiaoFei.start();
         XiaoFei xiaoFei2 = new XiaoFei();
@@ -25,5 +21,10 @@ public class Demo {
         xiaoFei5.start();
         XiaoFei xiaoFei6 = new XiaoFei();
         xiaoFei6.start();
+
+        ShengChan shengChan = new ShengChan();
+        shengChan.start();
+        ShengChan shengChan2 = new ShengChan();
+        shengChan2.start();
     }
 }

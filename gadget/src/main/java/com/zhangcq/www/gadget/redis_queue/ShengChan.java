@@ -14,12 +14,13 @@ public class ShengChan extends Thread{
 
     @Override
     public void run() {
-        Jedis jedis = OneJedis.getJedis();
+        Jedis jedis = JedisPools.getJedis();
         while (true){
             try {
                 Thread.sleep((long) (Math.random()*1000));
                 UUID uuid = UUID.randomUUID();
-                jedis.lpush("list","插入的"+uuid.toString());
+                jedis.lpush("list",uuid.toString());
+                System.out.println(Thread.currentThread().getName()+"插入的"+uuid.toString());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -2,6 +2,7 @@ package api.demo;
 
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.ACL;
+import org.apache.zookeeper.data.Id;
 import org.apache.zookeeper.data.Stat;
 
 import java.io.IOException;
@@ -69,8 +70,10 @@ public class NodeOperationDemo implements Watcher{
         //设置授权
         List<ACL> acls = new ArrayList<ACL>();
         zooKeeper.addAuthInfo(SchemaType.DIGEST.getType(),"root:root".getBytes());
-        ACL acl = new ACL();
-        acls.add(acl);
+//        ACL acl = new ACL(ZooDefs.Perms.READ|ZooDefs.Perms.WRITE,new Id("ip","192.168.0.0.1"));
+//        ACL acl1 = new ACL(ZooDefs.Perms.READ|ZooDefs.Perms.WRITE,new Id("digest","username:password"));
+//        acls.add(acl);
+//        acls.add(acl1);
         zooKeeper.create("/auth","auth".getBytes(),acls,CreateMode.EPHEMERAL);
 
 

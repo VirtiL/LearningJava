@@ -3,6 +3,7 @@ package redis;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Transaction;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,18 +28,14 @@ public class RedisLock {
             long trueTime = System.currentTimeMillis() + timeout;
             //模拟阻塞
             while (trueTime > System.currentTimeMillis()){
-                //setnx不是阻塞操作,只有在 key 不存在时设置 key 的值。
-                if(jedis.setnx(key,lock) == 1){
-                    jedis.expire(key,timeout);
+                //setnx不是阻塞操作,只有在 key 不存在时设置 key 的值。EX是秒,PX是毫秒 NX只有键key不存在的时候才会设置key的值 XX – 只有键key存在的时候才会设置key的值
+                String set = jedis.set(key, lock, "NX", "PX", 1000);
+                if("OK".equals(set)){
                     System.out.println(Thread.currentThread().getName()+"->加锁成功!");
                     return lock;
                 }
-                //检测过期时间
-                if(jedis.ttl(key) == -1){
-                    jedis.expire(key,timeout);
-                }
-//                jedis.set(key.getBytes(),lock.getBytes(),"nx".getBytes(),"ex".getBytes(),2000);
                 Thread.sleep(1000);
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,7 +72,6 @@ public class RedisLock {
 
         return false;
     }
-
 
     public static void main(String[] args) {
         RedisLock redisLock = new RedisLock();

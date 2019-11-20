@@ -12,7 +12,7 @@ public interface Commander {
 
     void addDriver(Driver driver);
 
-    void changeStatus();
+    void changeStatus(String status);
 
     String getStatus();
 }

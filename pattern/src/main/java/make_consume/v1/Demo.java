@@ -11,18 +11,18 @@ public class Demo {
 
         Library library = new Library();
         Make make = new Make(library);
-        Make make2 = new Make(library);
-        Make make3 = new Make(library);
+//        Make make2 = new Make(library);
+//        Make make3 = new Make(library);
         Consume consume = new Consume(library);
-        Consume consume2 = new Consume(library);
-        Consume consume3 = new Consume(library);
+//        Consume consume2 = new Consume(library);
+//        Consume consume3 = new Consume(library);
 
         make.start();
-        make2.start();
-        make3.start();
+//        make2.start();
+//        make3.start();
 
         consume.start();
-        consume2.start();
+//        consume2.start();
 //        consume3.start();
 
 

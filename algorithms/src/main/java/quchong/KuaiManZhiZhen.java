@@ -3,7 +3,7 @@ package quchong;
 import java.util.Arrays;
 
 /**
- * @Description:主要求的是数组中不重复的元素个数以及值
+ * @Description:主要求的是数组中不重复的元素个数以及值(去重)
  * @author: zhangcq
  * @Time: 2019-7-5 17:16
  * @Version 1.0

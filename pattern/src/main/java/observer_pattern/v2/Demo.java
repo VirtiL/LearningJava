@@ -14,9 +14,10 @@ public class Demo {
         Commander deng = new DengCommander();
         BMDriver bmDriver = new BMDriver(deng);
         BTDriver btDriver = new BTDriver(deng);
+
         deng.addDriver(bmDriver);
         deng.addDriver(btDriver);
-        deng.changeStatus();
+        deng.changeStatus("灯绿了     ");
         deng.notifyDriver();
 
 
@@ -25,7 +26,7 @@ public class Demo {
         BTDriver btDriver1 = new BTDriver(jiaojing);
         jiaojing.addDriver(bmDriver1);
         jiaojing.addDriver(btDriver1);
-        jiaojing.changeStatus();
+        jiaojing.changeStatus("你们可以走了        ");
         jiaojing.notifyDriver();
 
     }

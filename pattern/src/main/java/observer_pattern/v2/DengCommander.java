@@ -19,8 +19,8 @@ public class DengCommander implements Commander{
 
 
     @Override
-    public void changeStatus() {
-        this.status = "灯绿了    ";
+    public void changeStatus(String status) {
+        this.status = status;
     }
 
     @Override

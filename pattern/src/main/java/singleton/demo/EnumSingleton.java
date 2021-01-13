@@ -1,20 +1,25 @@
 package singleton.demo;
 
 /**
- * @Description: 枚举式(推荐)
- * @author zhangcq
- * @Time: 2019/2/18 18:02
- * @Version 1.0
+ * @Description: 枚举式单例(最完美的线程安全单例写法)
+ * @Author: virtiL
+ * @Time: 2021/1/13 13:58
  */
 public enum EnumSingleton {
-    /**
-     * 实例
-     */
+
     INSTANCE;
 
-    EnumSingleton() {}
+    private Object data;
 
-    public void print() {
-        System.out.println("巴拉巴拉...");
+    public static EnumSingleton getInstance(){
+        return INSTANCE;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
     }
 }

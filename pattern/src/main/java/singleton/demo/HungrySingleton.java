@@ -1,23 +1,54 @@
 package singleton.demo;
 
+import java.io.Serializable;
+
 /**
- * @Description: 饿汉式(线程安全的单例)(不推荐)
- * @author zhangcq
- * @Time: 2019/2/18 17:54
- * @Version 1.0
+ * @Description: 饿汉式单例1
+ * @Author: virtiL
+ * @Time: 2021/1/13 13:53
  */
-public class HungrySingleton {
+public class HungrySingleton implements Serializable {
 
-    private static HungrySingleton instance = new HungrySingleton();
+    private static final HungrySingleton INSTANCE = new HungrySingleton();
 
-//    private static HungrySingleton instance;
-//    static {
-//        instance = new HungrySingleton();
-//    }
-
-    private HungrySingleton() {}
-
-    public static HungrySingleton getInstance(){
-        return instance;
+    private HungrySingleton() {
+        if (INSTANCE != null) {
+            throw new RuntimeException("Multiple instances are not allowed");
+        }
     }
+
+    public static HungrySingleton getInstance() {
+        return INSTANCE;
+    }
+
+
+    private Object readResolve() {
+        return INSTANCE;
+    }
+
+
 }
+
+//public class HungrySingleton {
+//
+//    private static final HungrySingleton INSTANCE;
+//
+//    static {
+//        INSTANCE = new HungrySingleton();
+//    }
+//
+//    private HungrySingleton() {
+//        if(INSTANCE != null){
+//            throw new RuntimeException("Multiple instances are not allowed");
+//        }
+//    }
+//
+//    public static HungrySingleton getInstance() {
+//        return INSTANCE;
+//    }
+//
+//    private Object readResolve() {
+//        return INSTANCE;
+//    }
+//
+//}
